@@ -3,7 +3,7 @@
 [![Probar laboratorio](https://github.com/layer-by-layer-labs/https-01-nginx-server-block/actions/workflows/test-lab.yml/badge.svg)](https://github.com/layer-by-layer-labs/https-01-nginx-server-block/actions/workflows/test-lab.yml)
 
 > Serie **HTTPS en Linux: del servidor vacío al sitio seguro** · Unidad 01
-> 🎬 Vídeo conceptual: *(enlace pendiente)* · 🛠️ Vídeo tutorial: *(enlace pendiente)*
+> 🎬 [Vídeo conceptual](https://youtu.be/7KdwEiBm2Uc) · 🛠️ [Vídeo tutorial](https://youtu.be/gLCVzIdojXE) · 📚 [Serie completa](https://www.youtube.com/playlist?list=PLMN13fIo0BXg)
 
 Tienes un servidor Nginx que debería publicar `sitio1.lab.test`, pero los visitantes reciben otra página. Tu trabajo es **averiguar por qué** y corregirlo, como lo haría un administrador de infraestructura.
 
