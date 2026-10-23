@@ -1,0 +1,24 @@
+# Comprueba que el laboratorio sigue funcionando: el estado inicial falla y la solución aprueba.
+# Solo se ejecuta cuando cambian archivos del laboratorio, para no gastar minutos de CI.
+name: Probar laboratorio
+
+on:
+  push:
+    paths: ["compose.yaml", "nginx/**", "html/**", "solucion/**", "check.sh", "tests/**", ".github/workflows/**"]
+  pull_request:
+    paths: ["compose.yaml", "nginx/**", "html/**", "solucion/**", "check.sh", "tests/**", ".github/workflows/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read            # mínimo privilegio: el flujo no puede escribir en el repositorio
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Análisis estático de los scripts
+        run: shellcheck check.sh tests/ci-test.sh
+      - name: Pruebas del laboratorio
+        run: ./tests/ci-test.sh

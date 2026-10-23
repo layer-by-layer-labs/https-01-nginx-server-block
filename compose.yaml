@@ -1,0 +1,14 @@
+# Laboratorio HTTPS-01: un servidor Nginx con un server block averiado.
+# El host expone el puerto 8080 para no requerir privilegios ni chocar con otros servicios.
+services:
+  web:
+    image: nginx:1.30-alpine        # versión fijada: el laboratorio no cambia sin que lo decidamos
+    container_name: lab-https01-web
+    ports:
+      - "127.0.0.1:8080:80"         # solo accesible desde tu propio equipo
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro   # configuración: la editas en tu equipo
+      - ./html:/usr/share/nginx/html:ro       # contenido de los sitios
+    mem_limit: 128m                 # límites de recursos: el laboratorio no debe afectar tu equipo
+    cpus: 0.5
+    restart: "no"
