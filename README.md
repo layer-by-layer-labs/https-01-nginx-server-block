@@ -1,5 +1,7 @@
 # HTTPS-01 · Nginx no sirve tu sitio: diagnostica y corrige un server block
 
+[![Probar laboratorio](https://github.com/layer-by-layer-labs/https-01-nginx-server-block/actions/workflows/test-lab.yml/badge.svg)](https://github.com/layer-by-layer-labs/https-01-nginx-server-block/actions/workflows/test-lab.yml)
+
 > Serie **HTTPS en Linux: del servidor vacío al sitio seguro** · Unidad 01
 > 🎬 Vídeo conceptual: *(enlace pendiente)* · 🛠️ Vídeo tutorial: *(enlace pendiente)*
 
@@ -25,7 +27,7 @@ Probado en macOS (Apple Silicon) y Linux (Ubuntu). En Windows debería funcionar
 ## Puesta en marcha
 
 ```bash
-git clone https://github.com/<organizacion>/https-01-nginx-server-block.git
+git clone https://github.com/layer-by-layer-labs/https-01-nginx-server-block.git
 cd https-01-nginx-server-block
 docker compose up -d        # arranca Nginx en segundo plano
 docker compose ps           # el servicio "web" debe aparecer como "running"

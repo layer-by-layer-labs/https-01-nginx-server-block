@@ -81,8 +81,11 @@ echo "$TOKEN" > "$ARCHIVO_TOKEN"
 peticion "$HOST_OK" "/check-${TOKEN}.txt"
 if [ "$CODIGO" = "200" ] && [ "$(tr -d '\r\n' < "$TMP/body")" = "$TOKEN" ]; then
   ok "sitio1 sirve archivos nuevos desde su directorio raíz (prueba con archivo aleatorio)."
+elif [ "$BLOQUE" != "sitio1" ]; then
+  falla "sitio1 no sirvió un archivo recién creado en html/sitio1/: la petición la atendió el bloque '$BLOQUE'." \
+        "Esta prueba depende de la 3: resuelve primero por qué el bloque sitio1 no recibe sus peticiones."
 else
-  falla "sitio1 no sirvió un archivo recién creado en html/sitio1/ (código $CODIGO, bloque '$BLOQUE')." \
+  falla "sitio1 no sirvió un archivo recién creado en html/sitio1/ (código $CODIGO)." \
         "El servidor debe servir el contenido real del directorio, no una respuesta fija." \
         "Revisa las directivas root y location del bloque sitio1."
 fi

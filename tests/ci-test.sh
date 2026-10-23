@@ -24,8 +24,18 @@ esperar_servidor() {
   echo "El servidor no respondió a tiempo."; docker compose logs web; return 1
 }
 
+# La prueba debe partir del estado inicial PUBLICADO, no del que haya dejado quien practicó.
+if command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1; then
+  if ! git diff --quiet HEAD -- nginx html; then
+    echo "ERROR: hay cambios sin confirmar en nginx/ o html/ (¿practicaste el laboratorio?)."
+    echo "Restaura el estado inicial con: git checkout -- nginx html"
+    exit 2
+  fi
+fi
+
 echo "== Arrancando el laboratorio en su estado inicial =="
-docker compose up -d --quiet-pull || exit 2
+docker compose down >/dev/null 2>&1           # un contenedor previo podría tener otra configuración en memoria
+docker compose up -d --quiet-pull --force-recreate || exit 2
 esperar_servidor || exit 2
 
 echo "== Propiedad 1: el estado inicial debe FALLAR =="
